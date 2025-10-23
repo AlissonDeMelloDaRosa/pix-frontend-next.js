@@ -1,0 +1,21 @@
+.mainContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 1rem;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  color: #111;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  margin-bottom: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}

@@ -1,31 +1,29 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { jwtVerify } from 'jose';
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
-// Defina rotas privadas
-const PROTECTED_PATHS = ['/dashboard', '/perfil'];
+export function middleware(request: NextRequest) {
+    const token = request.cookies.get('authToken');
+    const rotasProtegidas = ['/dashboard', '/perfil'];
 
-export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+    if (rotasProtegidas.some(rota => request.nextUrl.pathname.startsWith(rota))) {
+        if (!token) {
+            const loginUrl = new URL('/', request.url);
+            return NextResponse.redirect(loginUrl);
+        }
+    }
 
-  if (!PROTECTED_PATHS.some((path) => pathname.startsWith(path))) {
     return NextResponse.next();
-  }
-
-  const token = req.headers.get('authorization')?.split(' ')[1];
-  if (!token) {
-    return NextResponse.redirect(new URL('/login', req.url));
-  }
-
-  try {
-    await jwtVerify(token, secret);
-    return NextResponse.next();
-  } catch {
-    return NextResponse.redirect(new URL('/login', req.url));
-  }
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/perfil/:path*'],
+    matcher: [
+        /*
+        * Corresponde a todos os caminhos de requisição, exceto para:
+        * - /api (rotas da API)
+        * - /_next/static (arquivos estáticos)
+        * - /_next/image (otimização de imagem)
+        * - /favicon.ico (ícone)
+        */
+        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    ],
 };
