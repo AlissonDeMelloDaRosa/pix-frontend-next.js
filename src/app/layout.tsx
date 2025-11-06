@@ -3,12 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Inter } from 'next/font/google';
 import { AuthProvider } from '@/context/AuthContext';
+// A importação da Navbar foi removida daqui
+
 const inter = Inter({ subsets: ['latin'] });
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        {/* 2. Envolva o {children} com o AuthProvider */}
+        {/* A Navbar FOI REMOVIDA DAQUI */}
         <AuthProvider>
           {children}
         </AuthProvider>

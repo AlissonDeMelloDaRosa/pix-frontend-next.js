@@ -1,0 +1,82 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Para o menu responsivo */
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espaçamento entre os links */
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #0070f3;
+}
+
+/* --- Estilos Responsivos --- */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 1001; /* Garante que fique acima do conteúdo */
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none; /* Esconde os links por padrão */
+    position: absolute;
+    top: 100%; /* Posiciona logo abaixo da navbar */
+    right: 0;
+    width: 100%;
+    background-color: #333;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .navLinks.showMenu {
+    display: flex; /* Mostra o menu quando ativo */
+  }
+
+  .navLinks a {
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

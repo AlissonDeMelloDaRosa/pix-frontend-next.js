@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import axios, { isAxiosError } from 'axios';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import RegisterPage from '@/pages/register.page';
 import styles from './Form.module.css';
 const LoginForm: FC = () => {
     const [cpfCnpj, setCpfCnpj] = useState<string>('');
@@ -17,7 +16,7 @@ const LoginForm: FC = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setError('');
-        const apiUrl = 'http://localhost:7501/api/auth/login';
+        const apiUrl = 'http://localhost:7500/v1/auth/login';
 
         try {
             const response = await axios.post<{ token: string }>(apiUrl, {
@@ -57,7 +56,7 @@ const LoginForm: FC = () => {
                 <button className={styles.button} type="submit">Entrar</button>
             </form>
             <div className={styles.linkContainer}>
-                <Link href="register.page">Não tem uma conta? Cadastre-se</Link>
+                <Link href="register">Não tem uma conta? Cadastre-se</Link>
             </div>
         </div>
     );

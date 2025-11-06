@@ -20,7 +20,7 @@ const RegistrationForm: FC = () => {
         setError('');
         setSuccess('');
 
-        const apiUrl = 'http://localhost:3001/api/v1/usuarios';
+        const apiUrl = 'http://localhost:7500/v1/usuarios';
 
         try {
             await axios.post(apiUrl, {
