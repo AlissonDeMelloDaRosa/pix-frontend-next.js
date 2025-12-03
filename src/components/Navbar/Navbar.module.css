@@ -6,7 +6,8 @@
   background-color: #333;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Para o menu responsivo */
+  position: sticky;
+  top: 0;
   z-index: 1000;
 }
 
@@ -15,12 +16,17 @@
   font-weight: bold;
   color: white;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #0070f3;
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Espaçamento entre os links */
+  gap: 1.5rem;
 }
 
 .navLinks a {
@@ -28,13 +34,29 @@
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
 }
 
 .navLinks a:hover {
   color: #0070f3;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Estilos Responsivos --- */
+.logoutBtn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #c82333;
+}
 
 .hamburger {
   display: none;
@@ -43,7 +65,7 @@
   background: transparent;
   border: none;
   padding: 0;
-  z-index: 1001; /* Garante que fique acima do conteúdo */
+  z-index: 1001;
 }
 
 .bar {
@@ -56,24 +78,35 @@
 
 @media (max-width: 768px) {
   .navLinks {
-    display: none; /* Esconde os links por padrão */
+    display: none;
     position: absolute;
-    top: 100%; /* Posiciona logo abaixo da navbar */
+    top: 100%;
     right: 0;
     width: 100%;
     background-color: #333;
     flex-direction: column;
     text-align: center;
     padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .navLinks.showMenu {
-    display: flex; /* Mostra o menu quando ativo */
+    display: flex;
   }
 
   .navLinks a {
-    padding: 1rem 0;
+    padding: 1rem;
     width: 100%;
+    border-radius: 0;
+  }
+
+  .navLinks a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .logoutBtn {
+    width: calc(100% - 2rem);
+    margin: 0.5rem 1rem;
   }
 
   .hamburger {
